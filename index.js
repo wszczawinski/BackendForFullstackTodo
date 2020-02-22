@@ -1,9 +1,13 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000,
-      ip = process.env.IP || "127.0.0.1";
+const express = require('express'),
+    bodyParser = require('body-parser'),
+    app = express(),
+    port = process.env.PORT || 3000,
+    ip = process.env.IP || "127.0.0.1";
 
-const todoRoutes = require('./routes/todos')
+const todoRoutes = require('./routes/todos');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     res.send('Hi there from express!!');
