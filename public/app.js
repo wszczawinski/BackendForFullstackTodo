@@ -8,7 +8,22 @@ $(document).ready( () => {
             createTodo();
         };
     });
+
+    $('.list').on('click', 'span', function() {
+        removeTodo($(this).parent());
+    });
 });
+
+const removeTodo = (todo) => {
+    let clickedId =todo.data('id');
+    
+    $.ajax({
+        method: 'DELETE',
+        url: `/api/todos/${clickedId}`
+    })
+        .then(data => todo.remove() )
+        .catch(err => console.log(err));
+}
 
 const addTodos = (todos) => {
     todos.forEach( todo => {
@@ -17,7 +32,8 @@ const addTodos = (todos) => {
 };
 
 const addTodo = (todo) => {
-    let newTodo = $(`<li class='task'>${todo.name}</li>`);
+    let newTodo = $(`<li class='task'>${todo.name}<span>X</span></li>`);
+    newTodo.data('id', todo._id);
         if(todo.completed){
             newTodo.addClass('done');
         };
