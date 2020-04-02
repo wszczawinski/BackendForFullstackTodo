@@ -1,7 +1,7 @@
 const express = require('express'),
     router = express.Router(),
-    db = require('../models/index'),
-    helpers = require('../helpers/todos')
+    db = require('../models'),
+    helpers = require('../helpers/todos');
 
 router.route('/')
     .get(helpers.getTodos)

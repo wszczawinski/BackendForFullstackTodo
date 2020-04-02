@@ -63,8 +63,8 @@ const updateTodo = (todo) => {
 }
 
 const removeTodo = (todo) => {
+    let clickedId = todo.data('id');
     let deleteUrl = `/api/todos/${clickedId}`;
-    let clickedId =todo.data('id');
     
     $.ajax({
         method: 'DELETE',
